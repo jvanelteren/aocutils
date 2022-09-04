@@ -6,4 +6,5 @@ __all__ = ['foo', 'bla']
 # %% ..\00_core.ipynb 3
 def foo(): pass
 
-def bla(): pass
+def bla(): 
+    return 1
