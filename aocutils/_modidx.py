@@ -5,5 +5,7 @@ d = { 'settings': { 'branch': 'master',
                 'doc_host': 'https://jvanelteren.github.io',
                 'git_url': 'https://github.com/jvanelteren/aocutils',
                 'lib_path': 'aocutils'},
-  'syms': { 'aocutils\\core': { 'aocutils\\core.bla': ('core.html#bla', 'aocutils\\core.py'),
-                                'aocutils\\core.foo': ('core.html#foo', 'aocutils\\core.py')}}}
+  'syms': { 'aocutils.core': { 'aocutils.core.bla': ('core.html#bla', 'aocutils/core.py'),
+                               'aocutils.core.foo': ('core.html#foo', 'aocutils/core.py')},
+            'aocutils.cores': { 'aocutils.cores.bla': ('core.html#bla', 'aocutils/cores.py'),
+                                'aocutils.cores.foo': ('core.html#foo', 'aocutils/cores.py')}}}
