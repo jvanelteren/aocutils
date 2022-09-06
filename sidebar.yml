@@ -1,0 +1,14 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 00_common.ipynb
+      - 01_grid.ipynb
+      - 02_maze.ipynb
+      - 03_math.ipynb
+      - 04_special.ipynb
+      - 05_norvig.ipynb
+      - 06_context_free_grammar.ipynb
+      - 07_shunting_yard.ipynb
+      - 08_visual.ipynb
+      - 10_datascience.ipynb
