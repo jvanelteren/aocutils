@@ -5,8 +5,7 @@ __all__ = ['factors', 'gcd', 'lcm', 'crt', 'mul_inv']
 
 # %% ../03_math.ipynb 2
 from functools import reduce
-from math import sqrt, gcd
-
+from math import sqrt, gcd, comb
 
 # %% ../03_math.ipynb 4
 def factors(n):
