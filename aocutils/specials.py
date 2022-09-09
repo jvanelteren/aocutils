@@ -8,12 +8,12 @@ import hashlib
 from pathlib import Path
 import networkx as nx
 
-# %% ../04_special.ipynb 4
+# %% ../04_special.ipynb 3
 def md5(input):
     return hashlib.md5(input.encode('utf-8')).hexdigest()
 
 
-# %% ../04_special.ipynb 6
+# %% ../04_special.ipynb 5
 def binarysearch(minim,maxim,function, flips_to_true=True): 
     """
      function needs to return a boolean whether the solution is ok
@@ -39,7 +39,7 @@ def binarysearch(minim,maxim,function, flips_to_true=True):
         else: minim = new+1
 
 
-# %% ../04_special.ipynb 9
+# %% ../04_special.ipynb 8
 def deduce_matches(input_dict, option_type=str):
     """
     Takes a dict with multiple keys that have one or more options
@@ -60,7 +60,7 @@ def deduce_matches(input_dict, option_type=str):
                         v2.remove(to_rem)
     return input_dict
 
-# %% ../04_special.ipynb 10
+# %% ../04_special.ipynb 9
 def find_pattern_in_iter(start_pattern, function, goal = None, n_iter=1000000000):
     """
         Returns when a SPECIFIED pattern has been found from a function
@@ -76,7 +76,7 @@ def find_pattern_in_iter(start_pattern, function, goal = None, n_iter=1000000000
             print(f'At step {i}, goal: {current} was found')
             return i, current
 
-# %% ../04_special.ipynb 11
+# %% ../04_special.ipynb 10
 def find_repeat(start_pattern, function, n_iter=None):
     """
         Returns when a NONSPECFIED repeating pattern has been found
@@ -93,7 +93,7 @@ def find_repeat(start_pattern, function, n_iter=None):
             return i,current
         seen.add(current)
 
-# %% ../04_special.ipynb 12
+# %% ../04_special.ipynb 11
 def find_cycle(start_pattern, function):
     """
         Find cycle length of some repeating pattern, by first inspecting which item repeats when
