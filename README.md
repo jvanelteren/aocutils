@@ -26,6 +26,21 @@ arr_to_dict([('a', 1), ('b',5)])
 
     {(0, 0): 'a', (0, 1): 1, (1, 0): 'b', (1, 1): 5}
 
+These are all the imports:
+
+    from aocutils.common import to_int, ints, flatten, _flatten, rev, zippify, list_multiply
+    from aocutils.grid import arr_to_dict, grid_to_dict, neighbors, arr_neighbors, iterate, Dim, dimensions, positive, manhattan, conv1d, conv2d
+    from aocutils.maze import bfs, dijkstra, get_path, dfs
+    from aocutils.math import gcd, factors, lcm, crt, mul_inv, lis
+    from aocutils.special import md5, binarysearch, deduce_matches, find_pattern_in_iter, find_repeat, find_cycle
+    from aocutils.aoc import data, do, quantify, first, rest, multimap, atom, atoms, list_atoms, dotproduct, mapt
+    from aocutils.visuals import visualize_graph, labelize, animate_grid
+    from aocutils.datascience import untar_data, timeit, load, save, nan_inspect
+    from aocutils.cfg import CFG
+    from aocutils.shunting import ShuntingYard
+
+And links to useful docs:
+
 [Docs on aocutils](https://jvanelteren.github.io/aocutils/)
 
 [Docs on nbdev](https://nbdev.fast.ai/explanations/directives.html)
