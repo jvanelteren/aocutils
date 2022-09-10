@@ -9,19 +9,23 @@ documentation!
 ## Install
 
 ``` sh
-pip install aocutils
+pip install -e .
 ```
+
+This installs locally and refreshes changes to the codebase
+automatically
 
 ## How to use
 
-Fill me in please! Don’t forget code examples:
+Import the functions from the submodules
 
 ``` python
-1+1
+from aocutils.grid import arr_to_dict
+arr_to_dict([('a', 1), ('b',5)])
 ```
 
-    2
+    {(0, 0): 'a', (0, 1): 1, (1, 0): 'b', (1, 1): 5}
 
-``` python
-import nbdev; nbdev.nbdev_export()
-```
+[Docs on aocutils](https://jvanelteren.github.io/aocutils/)
+
+[Docs on nbdev](https://nbdev.fast.ai/explanations/directives.html)
