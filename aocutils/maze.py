@@ -7,7 +7,7 @@ __all__ = ['bfs', 'dijkstra', 'get_path', 'dfs']
 from collections import namedtuple, deque
 import heapq
 
-# %% ../02_maze.ipynb 4
+# %% ../02_maze.ipynb 3
 def bfs(connections, start, goal=None, verbose=False):
     """
     Requires a connections dict with tuples with neighbors per node.
@@ -53,7 +53,7 @@ def bfs(connections, start, goal=None, verbose=False):
     if goal: return False
     else: return parents
 
-# %% ../02_maze.ipynb 6
+# %% ../02_maze.ipynb 5
 def dijkstra(connections,start, goal=None):
     """
     Requires a dict with as values a LIST of tuples (neighbor, weight)
@@ -101,7 +101,7 @@ def dijkstra(connections,start, goal=None):
     else: return False
 
 
-# %% ../02_maze.ipynb 8
+# %% ../02_maze.ipynb 7
 def get_path(parents,start,goal):
     # print(start,goals)
     cur = goal
@@ -112,7 +112,7 @@ def get_path(parents,start,goal):
     path.reverse()
     return path
 
-# %% ../02_maze.ipynb 9
+# %% ../02_maze.ipynb 8
 # found this on internet
 def dfs(graph, start):
     visited, stack = set(), [start]

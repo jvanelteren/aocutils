@@ -21,7 +21,7 @@ import re
 
 DATA_DIR = Path('data')
 
-# %% ../00_common.ipynb 4
+# %% ../00_common.ipynb 3
 def to_int(inp: Iterable, intonly=False): 
     """ 
         returns items converted to int if possible
@@ -49,14 +49,14 @@ def to_int(inp: Iterable, intonly=False):
     if isinstance(inp,tuple): return tuple(out)
     else: return list(out)
 
-# %% ../00_common.ipynb 6
+# %% ../00_common.ipynb 5
 def ints(text: str) -> tuple[int]:
     """
         Return a tuple of all the integers in a string
     """
     return tuple(map(int, re.findall('-?[0-9]+', text)))
 
-# %% ../00_common.ipynb 8
+# %% ../00_common.ipynb 7
 def flatten(x):
     # recursive flattens the input. Returns a list
     return list(_flatten(x))
@@ -68,11 +68,11 @@ def _flatten(x):
         else:
             yield item
 
-# %% ../00_common.ipynb 10
+# %% ../00_common.ipynb 9
 def reverse_dict(d):
     return {v:k for k,v in d.items()}
 
-# %% ../00_common.ipynb 12
+# %% ../00_common.ipynb 11
 def zippify(iterable, len=2, cat=False):
     """
         Zips an iterable with arbitrary length pieces
@@ -89,7 +89,7 @@ def zippify(iterable, len=2, cat=False):
     res = list(zip(*iterable_collection))
     return [''.join(r) for r in res] if cat else res
 
-# %% ../00_common.ipynb 14
+# %% ../00_common.ipynb 13
 def list_multiply(a,b):
     """
         Multiplies two iterables elementwise

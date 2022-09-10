@@ -19,7 +19,7 @@ import pandas as pd
 import numpy as np
 
 
-# %% ../10_datascience.ipynb 4
+# %% ../10_datascience.ipynb 3
 def untar_data(path, save_dir = None):
     # will untar a file to save dir or the directory of path
     if isinstance(path,Path):
@@ -32,7 +32,7 @@ def untar_data(path, save_dir = None):
     else:
         print('argument should be Path instance')
 
-# %% ../10_datascience.ipynb 5
+# %% ../10_datascience.ipynb 4
 logging.getLogger().setLevel(logging.INFO)
 @contextlib.contextmanager
 def timeit(description=None):
@@ -44,7 +44,7 @@ def timeit(description=None):
     logging.info(f'{description}, time: {elapsed}')
 
 
-# %% ../10_datascience.ipynb 6
+# %% ../10_datascience.ipynb 5
 def load(filename):
     f = open(filename,"rb")
     return pickle.load(f)
@@ -53,7 +53,7 @@ def save(data, filename):
     with open(filename, 'wb') as handle:
         pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-# %% ../10_datascience.ipynb 7
+# %% ../10_datascience.ipynb 6
 def nan_inspect(df):
     # will return some sort or correlation matrix
     # this helps to quickly see where the na values are and if they are shared with multiple columns

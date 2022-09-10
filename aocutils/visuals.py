@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from IPython.display import HTML
+from matplotlib import animation, rc
 
 # https://pygraphviz.github.io/documentation/stable/install.html
 # python -m pip install --global-option=build_ext --global-option="-IC:\Program Files\Graphviz\include" --global-option="-LC:\Program Files\Graphviz\lib" pygraphviz
@@ -58,8 +60,6 @@ def labelize(lines):
     return {idx:''.join([str(idx)]+line) for idx, line in enumerate(lines)}
 
 # %% ../08_visual.ipynb 5
-from IPython.display import HTML
-from matplotlib import animation, rc
 # http://louistiao.me/posts/notebooks/embedding-matplotlib-animations-in-jupyter-as-interactive-javascript-widgets/
 def animate_grid(arr, step):
     """
