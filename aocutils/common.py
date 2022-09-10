@@ -28,7 +28,10 @@ def to_int(
     """
     returns items converted to int if possible
     
-    e.g. to_int(['-12', 2, 'a']) returns [-12, 2, 'a']
+    Examples
+    --------
+    >>> to_int(['-12', 2, 'a'])
+    [-12, 2, 'a']
     """
 
     if not it:
