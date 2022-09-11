@@ -12,14 +12,10 @@ import matplotlib.animation as animation
 from IPython.display import HTML
 from matplotlib import animation, rc
 
-# https://pygraphviz.github.io/documentation/stable/install.html
-# python -m pip install --global-option=build_ext --global-option="-IC:\Program Files\Graphviz\include" --global-option="-LC:\Program Files\Graphviz\lib" pygraphviz
-
 # %% ../08_visual.ipynb 3
 cat = ''.join
 def visualize_graph(edges:set, labels=None):
     '''
-    # %matplotlib inline
     Plots graph.
     edges: set with tuples (fromnode, tonode)
     labels: optional dictionary with node descriptions. If None, the node variable names will be used
@@ -59,31 +55,19 @@ def labelize(lines):
     '''
     return {idx:''.join([str(idx)]+line) for idx, line in enumerate(lines)}
 
-# %% ../08_visual.ipynb 5
+# %% ../08_visual.ipynb 6
 # http://louistiao.me/posts/notebooks/embedding-matplotlib-animations-in-jupyter-as-interactive-javascript-widgets/
-def animate_grid(arr, step):
-    """
-    Make sure to put in your notebook
-        %matplotlib ipympl
-
-    Arr is a numpy arr, 
-    step is a function called with a counter, should return new grid
-
-    Example usage:
-    from aocutils.visuals import animate_grid
-    def step(i):
-        return np.random.rand(36).reshape((6,6))
-    arr = np.random.rand(36).reshape((6,6))
-    animate_grid(arr, step)
-
-    """
+def animate_grid(
+    arr, # Numpy arr, e.g. np.random.rand(36).reshape((6,6))
+    step): # Function called with a counter, should return new grid, e.g. return np.random.rand(36).reshape((6,6))
+    # Animates a grid
     def update_fn(i):
         matrice.set_array(step(i))
     fig, ax = plt.subplots(figsize=(15,15))
     matrice = ax.matshow(arr)
     plt.colorbar(matrice)
     anim =  animation.FuncAnimation(fig, update_fn)
-    anim._repr_html_() is None
+    # anim._repr_html_() is None
     rc('animation', html='jshtml')
     return HTML(anim.to_jshtml())
 

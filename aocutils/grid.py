@@ -9,11 +9,12 @@ from collections import namedtuple
 import numpy as np
 
 # %% ../01_grid.ipynb 3
-def arr_to_dict(arr):
-    """
-        takes in an numpy array or list of lists (tuple of tuples) and returns a dictionary with indices, values
-        Example
-            arr_to_dict([['a','b'],['c','#']]) == {(0, 0): 'a', (0, 1): 'b', (1, 0): 'c', (1, 1): '#'}
+def arr_to_dict(arr) -> dict: # numpy array or list of lists (tuple of tuples) 
+    """ 
+    Example
+    --------
+    >>>arr_to_dict([['a','b'],['c','#']])
+    {(0, 0): 'a', (0, 1): 'b', (1, 0): 'c', (1, 1): '#'}
     """
     d = {}
     if isinstance(arr, str):

@@ -17,7 +17,7 @@ import time
 import pickle
 import pandas as pd
 import numpy as np
-
+import tarfile
 
 # %% ../10_datascience.ipynb 3
 def untar_data(path, save_dir = None):
