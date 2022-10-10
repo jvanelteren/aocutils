@@ -7,14 +7,14 @@ __all__ = ['md5', 'binarysearch', 'deduce_matches', 'find_pattern_in_iter', 'fin
 import hashlib
 from pathlib import Path
 import networkx as nx
+from collections import defaultdict
 
 # %% ../04_special.ipynb 3
 def md5(input):
     return hashlib.md5(input.encode('utf-8')).hexdigest()
 
-
 # %% ../04_special.ipynb 5
-def binarysearch(minim,maxim,function, flips_to_true=True): 
+def binarysearch(minim,maxim,function, flips_to_true=True, verbose=True): 
     """
      function needs to return a boolean whether the solution is ok
      this implementation is for function that starts with false for minim and flip to true
@@ -23,9 +23,9 @@ def binarysearch(minim,maxim,function, flips_to_true=True):
     new = minim
     while True:
         new = (minim+maxim)//2
-        print(f'to_test: {new}, min {minim}, max {maxim} ', end=' ')
+        if verbose: print(f'to_test: {new}, min {minim}, max {maxim} ', end=' ')
         res = function(new)
-        print('function returns', res)
+        if verbose: print('function returns', res)
         if not flips_to_true: res = not res
         if res:
             if new == maxim: # solution found
@@ -39,14 +39,14 @@ def binarysearch(minim,maxim,function, flips_to_true=True):
         else: minim = new+1
 
 
-# %% ../04_special.ipynb 8
+# %% ../04_special.ipynb 7
 def deduce_matches(input_dict, option_type=str):
     """
     Takes a dict with multiple keys that have one or more options
     The trick is to start with what you know: keys with one option and remove that option for the other keys
     Continuing that process leads to every key ending up with one option (hopefully)
 
-    Assumes: the options are strings and sort in some kind of container
+    Assumes: the options are strings and stored in an interable
     """
     found = 0
     while found < len(input_dict):

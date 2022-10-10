@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['Dim', 'arr_to_dict', 'grid_to_dict', 'neighbors', 'arr_neighbors', 'iterate', 'dimensions', 'positive', 'manhattan',
-           'conv1d', 'conv2d']
+           'conv1d', 'conv2d', 'rotate']
 
 # %% ../01_grid.ipynb 2
 from collections import namedtuple
@@ -18,8 +18,7 @@ def arr_to_dict(arr) -> dict: # numpy array or list of lists (tuple of tuples)
     """
     d = {}
     if isinstance(arr, str):
-        print('only works with list of lists or np.ndarray. Use grid_to_dict if input is a string grid ')
-        return
+        raise TypeError("only works with list of lists or np.ndarray. Use grid_to_dict if input is a string grid")
     for i in range(len(arr)):
         for j in range(len(arr[0])):
             d[(i,j)] = arr[i][j]
@@ -130,7 +129,8 @@ def conv1d(arr,conv_shape,mode='same',padding=None,pad_dir='center') ->list:
     mode == 'same': return the same amount of items as original
     when mode =='same', default padding is the outer value
     """
-    print('not fully checked yet')
+    print('not fully checked yet', mode)
+    
     if padding:
         to_pad = padding # user specified padding
     else:
@@ -208,4 +208,30 @@ def conv2d(arr,conv_shape,mode='valid',padding=None,pad_dir='center') ->list:
         return [arr[i-p_size:i+p_size+1] for i in range(p_size,len(arr)-p_size)]
     else: # even conv_shape
         return [arr[i:i+conv_shape] for i in range(0,len(arr)-conv_shape+1)]
+
+
+# %% ../01_grid.ipynb 24
+def rotate(locs, flip=False):
+    """
+        Rotates a given pattern by 90 degrees (like a puzzle piece)
+        when flip=True, also piece around leading to maximum of 8 options
+    """
+    def normalize(locs):
+        minr = min(r for r,c in locs)
+        minc = min(c for r,c in locs)
+        return {(r-minr, c-minc) for r,c in locs}
+
+    options = [{(r,c) for r,c in locs},
+            {(c,-r) for r,c in locs},
+            {(-r,-c) for r,c in locs},
+            {(-c,r) for r,c in locs},
+    ]
+    if flip:
+        options += [
+            {(-r,c) for r,c in locs},
+            {(c,r) for r,c in locs},
+            {(r,-c) for r,c in locs},
+            {(-c,-r) for r,c in locs}]
+    return [normalize(o) for o in options]
+    
 
