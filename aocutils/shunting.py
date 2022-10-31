@@ -15,11 +15,7 @@ left_associative = {'-', '/', '+', '*'}
 # %% ../07_shunting_yard.ipynb 2
 # https://en.wikipedia.org/wiki/Associative_property
 # https://en.wikipedia.org/wiki/Shunting-yard_algorithm
-
-
-
-
-
+# https://adventofcode.com/2020/day/18
 class ShuntingYard:
     """
     Init with a precedence dictionary. Then call SY.calc(line), with a string as input
