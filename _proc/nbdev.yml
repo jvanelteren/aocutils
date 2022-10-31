@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "aocutils"
+  site-url: "https://jvanelteren.github.io/aocutils"
+  description: "AoC helper functions"
+  repo-branch: master
+  repo-url: "https://github.com/jvanelteren/aocutils"
