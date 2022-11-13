@@ -124,7 +124,7 @@ class UnionFind():
             return True
         return False
         
-    def _get_parent(self, x):
+    def get_parent(self, x):
         # finding the parent of an object
         while x != self.parents[x]:
             parent = self.parents[x]
@@ -139,7 +139,7 @@ class UnionFind():
             if i not in self.parents:
                 self.add(i)
                 
-        x,y  = self._get_parent(x), self._get_parent(y)
+        x,y  = self.get_parent(x), self.get_parent(y)
         if x == y:
             return False
         if self.sizes[x] < self.sizes[y]:
@@ -153,8 +153,11 @@ class UnionFind():
         # returns all linked objects in a list of lists
         groups = defaultdict(list)
         for i in self.parents:
-            groups[self._get_parent(i)].append(i)
+            groups[self.get_parent(i)].append(i)
         return list(groups.values())
+
+    def is_spanning(self):
+        return len(self.groups()) == 1
 
 # %% ../04_special.ipynb 16
 @dataclass
