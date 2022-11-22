@@ -35,14 +35,13 @@ import re import string
 
 import networkx as nx import numpy as np import pandas as pd
 
-    from aocutils.common import copy_func, patch_to, patch, to_int, ints, _flatten, rev, zippify, list_multiply, data, quantify, first, multimap, atom, atoms, list_atoms, dotproduct, mapt
+    from aocutils.common import copy_func, patch_to, patch, to_int, ints, flatten, _flatten, rev, zippify, list_multiply, data, quantify, first, multidict, atom, atoms, list_atoms, dotproduct, mapt
     from aocutils.grid import arr_to_dict, grid_to_dict, neighbors, arr_neighbors, iterate, Dim, dimensions, positive, manhattan, conv1d, conv2d, rotate
     from aocutils.maze import bfs, dijkstra, get_path, dfs
-    from aocutils.math import gcd, factors, lcm, crt, mul_inv, Segment, lis, all_combinations, all_permutations
-    from aocutils.special import md5, binarysearch, deduce_matches, find_pattern_in_iter, find_repeat, find_cycle, UnionFind, Block, LazySegmentTree
+    from aocutils.math import gcd, factors, lcm, crt, mul_inv, Segment, lis, angle, all_combinations, all_permutations, mst
+    from aocutils.special import md5, binarysearch, deduce_matches, find_pattern_in_iter, find_repeat, find_cycle, UnionFind, Octree, Robot, LazySegmentTree
     from aocutils.visuals import visualize_graph, labelize, animate_grid
     from aocutils.datascience import untar_data, timeit, load, save, nan_inspect
-    from aocutils.cfg import CFG
     from aocutils.shunting import ShuntingYard
 
 And links to useful docs:

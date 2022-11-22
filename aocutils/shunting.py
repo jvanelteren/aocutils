@@ -8,17 +8,20 @@ import math
 from collections import deque
 from collections import defaultdict
 import operator
-
+from functools import partial
 left_associative = {'-', '/', '+', '*'}
 
 
 # %% ../07_shunting_yard.ipynb 2
 # https://en.wikipedia.org/wiki/Associative_property
 # https://en.wikipedia.org/wiki/Shunting-yard_algorithm
+# Tested on:
 # https://adventofcode.com/2020/day/18
+# https://leetcode.com/problems/basic-calculator/
 class ShuntingYard:
     """
     Init with a precedence dictionary. Then call SY.calc(line), with a string as input
+    Symbols and numbers should be spaced from eachother
     
     Example precedence dictionary. Higher numbers have a higher precedence:
     prec = defaultdict(lambda: int(9))
@@ -47,6 +50,7 @@ class ShuntingYard:
     """
     def __init__(self, prec=None, ops=None):
         self.prec = {
+            '$':8,
             '**':7, 
             '/':6, 
             '*':6, 
@@ -60,6 +64,7 @@ class ShuntingYard:
             '|': 1} if not prec else prec
     
         self.ops = {
+            '$' : operator.sub,
             '+' : operator.add,
             '-' : operator.sub,
             '*' : operator.mul,
@@ -80,11 +85,13 @@ class ShuntingYard:
     def get_postfix(self, list_of_symbols):
         op_stack = deque()
         output_stack = deque()
+        # we need to check if the '-' sign is unary operation (e.g. -2 instead of 1 - 2)
+        possible_unary = True
 
         for symbol in list_of_symbols:
-            # print(output_stack, op_stack)
             if isinstance(symbol, int): 
                 output_stack.append(symbol)
+                possible_unary = False
             elif self.is_callable_string(symbol): 
                 op_stack.append(symbol)
             elif symbol in self.prec:
@@ -92,19 +99,26 @@ class ShuntingYard:
                     self.prec[op_stack[-1]] > self.prec[symbol] or 
                     (self.prec[op_stack[-1]] == self.prec[symbol] and symbol in '-/*+'))):
                     output_stack.append(op_stack.pop())
-                op_stack.append(symbol)
+                if symbol == '-' and possible_unary:
+                    op_stack.append('$')
+                else:
+                    op_stack.append(symbol)
             
-            elif symbol == '(': op_stack.append(symbol)
-            elif symbol == ')': 
+            elif symbol == '(': 
+                op_stack.append(symbol)
+                possible_unary = True
+            elif symbol == ')':
+                possible_unary = False
                 while op_stack[-1] != '(':
                     output_stack.append(op_stack.pop())
                 if op_stack and op_stack[-1]=='(':
                     op_stack.pop() # remove the (
                 if op_stack and callable(op_stack[-1]):
                     output_stack.append(op_stack.pop())
+            else:
+                print('should not happen')
         while op_stack:
             output_stack.append(op_stack.pop())
-        
         return output_stack
 
     def eval_postfix(self, output_stack):
@@ -112,7 +126,11 @@ class ShuntingYard:
         for symbol in output_stack:
             if isinstance(symbol, int): res.append(symbol)
             else:
-                second, first = res.pop(), res.pop()
+                second = res.pop()
+                if symbol == '$': # unary minus: 0 - second
+                    first = 0
+                else:
+                    first = res.pop()
                 if symbol in self.ops:
                     temp = self.ops[symbol](first, second)
                 else:
