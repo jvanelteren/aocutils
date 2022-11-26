@@ -42,6 +42,7 @@ import networkx as nx import numpy as np import pandas as pd
     from aocutils.special import md5, binarysearch, deduce_matches, find_pattern_in_iter, find_repeat, find_cycle, UnionFind, Octree, Robot, LazySegmentTree
     from aocutils.visuals import visualize_graph, labelize, animate_grid
     from aocutils.datascience import untar_data, timeit, load, save, nan_inspect
+    from aocutils.cfg import State, parse, find, printparse
     from aocutils.shunting import ShuntingYard
 
 And links to useful docs:

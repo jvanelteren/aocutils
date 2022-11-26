@@ -102,4 +102,5 @@ d = { 'settings': { 'branch': 'master',
                                   'aocutils.special.md5': ('special.html#md5', 'aocutils/special.py')},
             'aocutils.visuals': { 'aocutils.visuals.animate_grid': ('visual.html#animate_grid', 'aocutils/visuals.py'),
                                   'aocutils.visuals.labelize': ('visual.html#labelize', 'aocutils/visuals.py'),
+                                  'aocutils.visuals.plot': ('visual.html#plot', 'aocutils/visuals.py'),
                                   'aocutils.visuals.visualize_graph': ('visual.html#visualize_graph', 'aocutils/visuals.py')}}}
