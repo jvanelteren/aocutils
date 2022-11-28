@@ -4,13 +4,8 @@
 __all__ = ['ShuntingYard']
 
 # %% ../07_shunting_yard.ipynb 1
-import math
 from collections import deque
-from collections import defaultdict
 import operator
-from functools import partial
-left_associative = {'-', '/', '+', '*'}
-
 
 # %% ../07_shunting_yard.ipynb 2
 # https://en.wikipedia.org/wiki/Associative_property

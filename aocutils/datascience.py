@@ -4,19 +4,12 @@
 __all__ = ['untar_data', 'timeit', 'load', 'save', 'nan_inspect']
 
 # %% ../10_datascience.ipynb 2
-from collections.abc import Iterable
-from collections import namedtuple, deque
 import contextlib
-from functools import reduce
-import hashlib
-import heapq
 import logging
-from math import sqrt, gcd
 from pathlib import Path
 import time
 import pickle
 import pandas as pd
-import numpy as np
 import tarfile
 
 # %% ../10_datascience.ipynb 3

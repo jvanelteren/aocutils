@@ -28,6 +28,7 @@ def factors(n):
 
 # %% ../03_math.ipynb 5
 def gcd(a, b):
+    # example gcd(10, 15) == 5
     largest = max(a, b)
     smallest = min(a, b)
     if a == b:
@@ -44,9 +45,10 @@ def gcd(a, b):
             smallest = rest
 
 
-def lcm(a):
-    lcm = a[0]
-    for i in a[1:]:
+def lcm(iterable):
+    # example 
+    lcm = iterable[0]
+    for i in iterable[1:]:
         lcm = lcm * i // gcd(lcm, i)
     return lcm
 
@@ -69,11 +71,11 @@ def crt(remainders, moduli):
     print("Returning remainder and modulo. First valid number is the remainder")
     return cur_rem, cur_mod
 
-# %% ../03_math.ipynb 13
+# %% ../03_math.ipynb 11
 def mul_inv(a, b):
     # solves e.g. 40x === 1(mod 7) --> 3
     # since 40-35 --> 5x === 1mod(7), if x would be 3, 15 === 1 (mod 7)
-    # this is called the multiplicative inverse
+    # this is called the multiplicative inverse, can also be calculated with pow(a, -1, b)
     b0 = b
     x0, x1 = 0, 1
     if b == 1:
@@ -86,7 +88,7 @@ def mul_inv(a, b):
         x1 += b0
     return x1
 
-# %% ../03_math.ipynb 15
+# %% ../03_math.ipynb 13
 # first try at implementing a segment tree
 class Segment:
     def __init__(self, array, func):
@@ -121,7 +123,7 @@ class Segment:
             l, r = l // 2, r // 2
         return res
 
-# %% ../03_math.ipynb 20
+# %% ../03_math.ipynb 18
 def lis(nums, func=operator.ge):
     """
     Change the func to change it into longest decreasing subsequence. Or other
@@ -147,7 +149,7 @@ def lis(nums, func=operator.ge):
         ans.append(nums[bestidx])
     return list(reversed(ans)) 
 
-# %% ../03_math.ipynb 21
+# %% ../03_math.ipynb 19
 def angle(a,b):
     dx = b[0] - a[0]
     dy = b[1] - a[1]
@@ -156,7 +158,7 @@ def angle(a,b):
 
 
 
-# %% ../03_math.ipynb 24
+# %% ../03_math.ipynb 22
 def all_combinations(it, start=None, end=None):
     """
     Returns all combinations from start to end (inclusive).
@@ -171,7 +173,7 @@ def all_combinations(it, start=None, end=None):
         for comb in combinations(it, i):
             yield comb
 
-# %% ../03_math.ipynb 26
+# %% ../03_math.ipynb 24
 def all_permutations(it, start=None, end=None):
     if not start: start = 1
     if not end: end = len(it)
@@ -182,7 +184,7 @@ def all_permutations(it, start=None, end=None):
         for perm in permutations(it, i):
             yield perm
 
-# %% ../03_math.ipynb 28
+# %% ../03_math.ipynb 26
 def mst(edges):
     # implements kruskall with unionfind
     edges.sort(key=lambda x: (-x[2]))
