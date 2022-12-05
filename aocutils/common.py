@@ -76,11 +76,11 @@ def to_int(
     else: return list(out)
 
 # %% ../00_common.ipynb 8
-def ints(text: str) -> tuple[int]:
+def ints(text: str, tolist=False) -> tuple[int]:
     """
     Return a tuple of all the integers in a string, discards everything else
     """
-    return tuple(map(int, re.findall('-?[0-9]+', text)))
+    return tuple(map(int, re.findall('-?[0-9]+', text))) if not tolist else list(map(int, re.findall('-?[0-9]+', text)))
 
 # %% ../00_common.ipynb 10
 def flatten(x:Iterable):
