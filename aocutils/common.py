@@ -59,7 +59,8 @@ def to_int(
         print('empty line, returning []')
         return []
     if isinstance(it,str):
-        print('watch out string will be converted into list of characters and single digit ints')
+        print('watch out string will be converted into list with string.split()')
+        it = it.split()
     if isinstance(it[0],list):
         return list(to_int(l) for l in it)
     if isinstance(it[0],tuple):
