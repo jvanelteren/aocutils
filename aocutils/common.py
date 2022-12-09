@@ -117,11 +117,13 @@ def zippify(iterable, len=2, cat=False):
     return [''.join(r) for r in res] if cat else res
 
 # %% ../00_common.ipynb 14
-def multidict(items: Iterable[tuple]) -> dict:
+def multidict(items: Iterable[tuple], both=False) -> dict:
     "Given (key, val) pairs, return {key: [val, ....], ...}."
     result = defaultdict(list)
     for key, val in items:
         result[key].append(val)
+        if both:
+            result[val].append(key)
     return result
 
 # %% ../00_common.ipynb 16

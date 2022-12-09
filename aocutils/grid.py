@@ -9,14 +9,22 @@ from collections import namedtuple
 import numpy as np
 
 # %% ../01_grid.ipynb 3
-def gridneigh(filename, diag=False, inc_self=False, parser=None):
+def gridneigh(filename, to_dict = True, diag=False, inc_self=False, parser=None):
+    """
+    Example to parse a simple grid consisting of ints
+    When parser is None, characters will be parsed
+    --------
+    >>> grid, neigh = gridneigh('input.txt', parser=lambda x: [int(ch) for ch in x.split(',')])
+    """
+
     if not parser:
         arr = [list(line) for line in open(filename, 'r').read().split('\n')]
     else:
         arr = [parser(line) for line in open(filename, 'r').read().split('\n')]
     neigh = arr_neighbors(arr,diag, inc_self)
-    grid = arr_to_dict(arr)
-    return grid, neigh
+    if to_dict:
+        arr = arr_to_dict(arr)
+    return arr, neigh
     
     
 

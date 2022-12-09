@@ -7,7 +7,6 @@ __all__ = ['visualize_graph', 'labelize', 'animate_grid', 'plot']
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 from IPython.display import HTML
 from matplotlib import animation, rc
 
