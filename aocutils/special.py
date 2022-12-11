@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['md5', 'binarysearch', 'deduce_matches', 'find_specific_pattern', 'find_repeat', 'find_cycle', 'UnionFind', 'Octree',
-           'LazySegmentTree']
+           'LazySegmentTree', 'Trie']
 
 # %% ../04_special.ipynb 2
 import hashlib
@@ -231,3 +231,7 @@ class LazySegmentTree():
             
     def getbest(self):
         return self.idxs[1]
+
+# %% ../04_special.ipynb 21
+def Trie():
+    return defaultdict(Trie)
