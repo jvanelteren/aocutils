@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>aocutils - Specific algo’s</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="aocutils - Specific algo’s">
+<meta property="og:description" content="source">
+<meta property="og:site-name" content="aocutils">
+<meta name="twitter:title" content="aocutils - Specific algo’s">
+<meta name="twitter:description" content="source">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">aocutils</span>
+    </a>
+  </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Specific algo’s</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">aocutils</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_common.html" class="sidebar-item-text sidebar-link">Common</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./grid.html" class="sidebar-item-text sidebar-link">Grid helpers</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maze.html" class="sidebar-item-text sidebar-link">Maze algo’s</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./math.html" class="sidebar-item-text sidebar-link">Mathy functions</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./special.html" class="sidebar-item-text sidebar-link active">Specific algo’s</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./context_free_grammar.html" class="sidebar-item-text sidebar-link">Context free grammar</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./earleyparser.html" class="sidebar-item-text sidebar-link">Earley Parser</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_shunting_yard.html" class="sidebar-item-text sidebar-link">07_shunting_yard.html</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual.html" class="sidebar-item-text sidebar-link">Visualisations</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datascience.html" class="sidebar-item-text sidebar-link">Data science helpers</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#md5" id="toc-md5" class="nav-link active" data-scroll-target="#md5">md5</a></li>
+  <li><a href="#binarysearch" id="toc-binarysearch" class="nav-link" data-scroll-target="#binarysearch">binarysearch</a></li>
+  <li><a href="#deduce_matches" id="toc-deduce_matches" class="nav-link" data-scroll-target="#deduce_matches">deduce_matches</a></li>
+  <li><a href="#find_specific_pattern" id="toc-find_specific_pattern" class="nav-link" data-scroll-target="#find_specific_pattern">find_specific_pattern</a></li>
+  <li><a href="#find_repeat" id="toc-find_repeat" class="nav-link" data-scroll-target="#find_repeat">find_repeat</a></li>
+  <li><a href="#find_cycle" id="toc-find_cycle" class="nav-link" data-scroll-target="#find_cycle">find_cycle</a></li>
+  <li><a href="#unionfind" id="toc-unionfind" class="nav-link" data-scroll-target="#unionfind">UnionFind</a></li>
+  <li><a href="#octree" id="toc-octree" class="nav-link" data-scroll-target="#octree">Octree</a></li>
+  <li><a href="#lazysegmenttree" id="toc-lazysegmenttree" class="nav-link" data-scroll-target="#lazysegmenttree">LazySegmentTree</a></li>
+  <li><a href="#trie" id="toc-trie" class="nav-link" data-scroll-target="#trie">Trie</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jvanelteren/aocutils/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Specific algo’s</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L18" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="md5" class="level3">
+<h3 class="anchored" data-anchor-id="md5">md5</h3>
+<blockquote class="blockquote">
+<pre><code> md5 (input)</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>md5(<span class="st">'bla'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'128ecf542a35ac5270a87dc740918404'</code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L22" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="binarysearch" class="level3">
+<h3 class="anchored" data-anchor-id="binarysearch">binarysearch</h3>
+<blockquote class="blockquote">
+<pre><code> binarysearch (minim, maxim, function, flips_to_true=True, verbose=True)</code></pre>
+</blockquote>
+<p>function needs to return a boolean whether the solution is ok this implementation is for function that starts with false for minim and flip to true for TTTTFFFF, pass set flips_to_true flag to false. This flag is important to set correct!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">200</span>, <span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">50</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">51</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">200</span>, <span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">50</span>, flips_to_true<span class="op">=</span><span class="va">False</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">49</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">201</span>, <span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">50</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">51</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">201</span>, <span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">50</span>, flips_to_true<span class="op">=</span><span class="va">False</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">49</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">200</span>, <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">50</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">50</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">200</span>, <span class="kw">lambda</span> x: x <span class="op">&lt;=</span> <span class="dv">50</span>, flips_to_true<span class="op">=</span><span class="va">False</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">50</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">201</span>, <span class="kw">lambda</span> x: x <span class="op">&gt;=</span> <span class="dv">50</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">50</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> binarysearch(<span class="dv">0</span>,<span class="dv">201</span>, <span class="kw">lambda</span> x: x <span class="op">&lt;=</span> <span class="dv">50</span>, flips_to_true<span class="op">=</span><span class="va">False</span>, verbose<span class="op">=</span><span class="va">False</span>) <span class="op">==</span> <span class="dv">50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>solution found 51
+solution found 49
+solution found 51
+solution found 49
+solution found 50
+solution found 50
+solution found 50
+solution found 50</code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L48" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="deduce_matches" class="level3">
+<h3 class="anchored" data-anchor-id="deduce_matches">deduce_matches</h3>
+<blockquote class="blockquote">
+<pre><code> deduce_matches (input_dict)</code></pre>
+</blockquote>
+<p>Takes a dict with multiple keys that have one or more options The trick is to start with what you know: keys with one option and remove that option for the other keys Continuing that process leads to every key ending up with one option (hopefully)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meals <span class="op">=</span> {<span class="st">'morning'</span>: [<span class="st">'yoghurt'</span>, <span class="st">'lasagna'</span>, <span class="st">'pizza'</span>],</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">'lunch'</span>: [<span class="st">'sandwich'</span>, <span class="st">'lasagna'</span>],</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'evening'</span>: [<span class="st">'pizza'</span>, <span class="st">'lasagna'</span>],</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'night'</span>: [<span class="st">'pizza'</span>]}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>answer <span class="op">=</span> {<span class="st">'morning'</span>: <span class="st">'yoghurt'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> <span class="st">'lunch'</span>: <span class="st">'sandwich'</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="st">'evening'</span>: <span class="st">'lasagna'</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> <span class="st">'night'</span>: <span class="st">'pizza'</span>}</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> deduce_matches(meals) <span class="op">==</span> answer</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># now test with tuples instead of strings as option</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>meals <span class="op">=</span> {<span class="st">'morning'</span>: [(<span class="st">'yoghurt'</span>,), (<span class="st">'lasagna'</span>,),(<span class="st">'pizza'</span>,)],</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'lunch'</span>: [(<span class="st">'sandwich'</span>,), (<span class="st">'lasagna'</span>,)],</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'evening'</span>: [(<span class="st">'pizza'</span>,), (<span class="st">'lasagna'</span>,)],</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'night'</span>: [(<span class="st">'pizza'</span>,)]}</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> deduce_matches(meals) <span class="op">==</span> {k: <span class="bu">tuple</span>([v,]) <span class="cf">for</span> k, v <span class="kw">in</span> answer.items()}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L73" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="find_specific_pattern" class="level3">
+<h3 class="anchored" data-anchor-id="find_specific_pattern">find_specific_pattern</h3>
+<blockquote class="blockquote">
+<pre><code> find_specific_pattern (start_pattern, function, goal=None,
+                        n_iter=1000000000)</code></pre>
+</blockquote>
+<p>Returns when a SPECIFIED pattern has been found from a function If goal = None, then first time the start pattern shows up again is returned Returns steps, pattern</p>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L89" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="find_repeat" class="level3">
+<h3 class="anchored" data-anchor-id="find_repeat">find_repeat</h3>
+<blockquote class="blockquote">
+<pre><code> find_repeat (start_pattern, function, n_iter=None)</code></pre>
+</blockquote>
+<p>Returns when a NONSPECFIED repeating pattern has been found Returns steps, pattern</p>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L106" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="find_cycle" class="level3">
+<h3 class="anchored" data-anchor-id="find_cycle">find_cycle</h3>
+<blockquote class="blockquote">
+<pre><code> find_cycle (start_pattern, function)</code></pre>
+</blockquote>
+<p>Find cycle length of some repeating pattern, by first inspecting which item repeats when And subtracting the time the item was first seen</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> find_specific_pattern(<span class="dv">99</span>,Test_gen()) <span class="op">==</span> <span class="dv">5</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> find_specific_pattern(<span class="dv">99</span>,Test_gen(),goal<span class="op">=</span><span class="dv">10</span>) <span class="op">==</span> <span class="dv">2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> find_specific_pattern(<span class="dv">99</span>,Test_gen(),goal<span class="op">=</span><span class="dv">5</span>) <span class="op">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>At step 5, goal: 99 was found
+At step 2, goal: 10 was found
+At step 1, goal: 5 was found</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> find_repeat(<span class="op">-</span><span class="dv">1</span>,<span class="kw">lambda</span> x: (x<span class="op">+</span><span class="dv">1</span>) <span class="op">%</span> <span class="dv">7</span>) <span class="op">==</span> (<span class="dv">8</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Repeat was found at step 8. Pattern: 0 returning steps, pattern</code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L116" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="unionfind" class="level3">
+<h3 class="anchored" data-anchor-id="unionfind">UnionFind</h3>
+<blockquote class="blockquote">
+<pre><code> UnionFind (it)</code></pre>
+</blockquote>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tested above class on some leetcode problems: works!</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>uf <span class="op">=</span> UnionFind([<span class="dv">100</span>,<span class="dv">101</span>,<span class="dv">102</span>,<span class="dv">103</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>uf.union(<span class="dv">101</span>,<span class="dv">100</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>uf.groups()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[[100, 101], [102], [103]]</code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L168" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="octree" class="level3">
+<h3 class="anchored" data-anchor-id="octree">Octree</h3>
+<blockquote class="blockquote">
+<pre><code> Octree (left:int, right:int, up:int, leftrange:int, rightrange:int,
+         uprange:int, totalhits:int=0)</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Robot <span class="op">=</span> namedtuple(<span class="st">'Robot'</span>, <span class="st">'l r u p'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>lines<span class="op">=</span><span class="bu">open</span>(<span class="st">'recursivepartition.txt'</span>).read().splitlines()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>maxx <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>robots <span class="op">=</span>[Robot(<span class="op">*</span>ints(line)) <span class="cf">for</span> line <span class="kw">in</span> lines]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>maxx <span class="op">=</span> <span class="bu">max</span>(<span class="bu">max</span>(r.r, r.l, r.u) <span class="op">+</span> r.p <span class="cf">for</span> r <span class="kw">in</span> robots)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> size <span class="op">&lt;</span> maxx:</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    size <span class="op">*=</span> <span class="dv">2</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Octree(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,size,size,size)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>b.count(robots)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>queue <span class="op">=</span> [b]</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> queue:</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    cur <span class="op">=</span> heapq.heappop(queue)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cur.leftrange <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> b <span class="kw">in</span> cur.split():</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>            b.count(robots)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>            heapq.heappush(queue, b)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> cur.distance <span class="op">==</span> <span class="dv">121493971</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L207" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="lazysegmenttree" class="level3">
+<h3 class="anchored" data-anchor-id="lazysegmenttree">LazySegmentTree</h3>
+<blockquote class="blockquote">
+<pre><code> LazySegmentTree (left, right)</code></pre>
+</blockquote>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> LazySegmentTree(<span class="dv">0</span>,<span class="dv">100</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>l.add(<span class="dv">0</span>,<span class="dv">50</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>l.add(<span class="dv">0</span>,<span class="dv">50</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>l.add(<span class="dv">49</span>,<span class="dv">51</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>l.add(<span class="dv">51</span>,<span class="dv">51</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> l.getbest() <span class="op">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/jvanelteren/aocutils/blob/master/aocutils/special.py#L236" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="trie" class="level3">
+<h3 class="anchored" data-anchor-id="trie">Trie</h3>
+<blockquote class="blockquote">
+<pre><code> Trie ()</code></pre>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
