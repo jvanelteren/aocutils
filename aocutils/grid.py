@@ -102,8 +102,8 @@ def dimensions(obj, axis=0):
      for example a 2d numpy array
      dim.min, dim.max and dim.range
     """
-    if isinstance(obj, list):
-        obj = np.array(obj.copy())
+    if not isinstance(obj, np.ndarray):
+        obj = np.array(list(obj).copy())
 
     minn = tuple(obj.min(axis = axis))
     maxx = tuple(obj.max(axis = axis))
