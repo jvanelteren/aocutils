@@ -37,7 +37,7 @@ import networkx as nx import numpy as np import pandas as pd
 
     from aocutils.common import copy_func, patch_to, patch, to_int, ints, flatten, zippify, multidict, rev, data, quantify, atom, atoms, list_atoms, list_multiply, mapt
     from aocutils.grid import gridneigh, arr_to_dict, grid_to_dict, neighbors, arr_neighbors, iterate, Dim, dimensions, positive, manhattan, conv1d, conv2d, rotate
-    from aocutils.maze import graphparse, bfs, dijkstra, get_path, dfs
+    from aocutils.maze import graphparse, bfs, dijkstra, distances, get_path, dfs
     from aocutils.math import gcd, factors, lcm, crt, mul_inv, Segment, lis, angle, all_combinations, all_permutations, mst
     from aocutils.special import md5, binarysearch, deduce_matches, find_specific_pattern, find_repeat, find_cycle, UnionFind, Octree, LazySegmentTree, Trie
     from aocutils.visuals import visualize_graph, labelize, animate_grid, plot

@@ -227,7 +227,7 @@ class LazySegmentTree():
             mid = (l + r) // 2
             self.add(start, end, l, mid, idx*2)
             self.add(start, end, mid+1, r, idx*2 + 1)
-            self.idxs[idx] = self.lazy.get(idx,0) + min((self.idxs.get(idx*2,0),self.idxs.get(idx*2+1,0)))
+            self.idxs[idx] = self.lazy.get(idx,0) + max((self.idxs.get(idx*2,0),self.idxs.get(idx*2+1,0)))
             
     def getbest(self):
         return self.idxs[1]

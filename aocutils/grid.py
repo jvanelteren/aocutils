@@ -7,6 +7,8 @@ __all__ = ['Dim', 'gridneigh', 'arr_to_dict', 'grid_to_dict', 'neighbors', 'arr_
 # %% ../01_grid.ipynb 2
 from collections import namedtuple
 import numpy as np
+from itertools import product
+import operator
 
 # %% ../01_grid.ipynb 3
 def gridneigh(filename, to_dict = True, diag=False, inc_self=False, parser=None):
@@ -24,9 +26,7 @@ def gridneigh(filename, to_dict = True, diag=False, inc_self=False, parser=None)
     neigh = arr_neighbors(arr,diag, inc_self)
     if to_dict:
         arr = arr_to_dict(arr)
-    return arr, neigh
-    
-    
+    return arr, neigh    
 
 # %% ../01_grid.ipynb 4
 def arr_to_dict(arr) -> dict: # numpy array or list of lists (tuple of tuples) 
@@ -60,17 +60,15 @@ def neighbors(i, diag = False,inc_self=False):
      if inc_self: returns self in results
      if diag: return diagonal moves as well
     """
-    r = [-1,0,1]
-    c = [-1,0,1]
+    delta = (1,0,-1)
+    options = product(delta, repeat = len(i))
     if diag:
-        if inc_self: 
-            return {(i[0]+dr, i[1]+dc) for dr in r for dc in c}
-        else: 
-            return {(i[0]+dr, i[1]+dc) for dr in r for dc in c if not (dr == 0 and dc == 0)}
+        res = {tuple(map(operator.add, i, o)) for o in options}
     else:
-        res =  {(i[0],i[1]+1), (i[0],i[1]-1),(i[0]+1,i[1]),(i[0]-1,i[1])}
-        if inc_self: res.add(i)
-        return res
+        res = {tuple(map(operator.add, i, o)) for o in options if o.count(0) >= len(o)-1}
+    if not inc_self: 
+        res.remove(i)
+    return res
 
 # %% ../01_grid.ipynb 10
 def arr_neighbors(arr, diag=False, inc_self=False):
