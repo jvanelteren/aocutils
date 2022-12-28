@@ -82,14 +82,16 @@ def plot(grid):
 def animate(grids # should be a list of set of coordinates
             ):
     # normalize the points onto a stable grid
-    minn = min(chain(*[cell for grid in grids for cell in grid]))
-    maxx = max(chain(*[cell for grid in grids for cell in grid]))
-    size = maxx-minn + 1
+    rows = [r for grid in grids for r,c in grid]
+    cols = [c for grid in grids for r,c in grid]
+    minr, minc = min(rows), min(cols)
+    maxr, maxc = max(rows), max(cols)
+    
     arrs = []
     for grid in grids:
-        arr = np.zeros((size,size))
+        arr = np.zeros((maxr-minr+1,maxc-minc+1))
         for r,c in grid:
-            arr[r-minn,c-minn] = 1
+            arr[r-minr,c-minc] = 1
         # apply matplotlib standard colormap (viridis)
         arrs.append(np.uint8(cm.viridis(arr)*255))
         
