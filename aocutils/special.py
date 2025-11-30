@@ -120,7 +120,7 @@ class UnionFind():
         self.sizes = {obj:1 for obj in it}
         assert len(it) == len(self.parents), 'does your iterable contain duplicates?'
         
-    def add(self, obj):
+    def addnode(self, obj):
         # add a new object after instantiation, returns False if object already in
         if obj not in self.parents:
             self.parents[obj] = obj
@@ -141,7 +141,7 @@ class UnionFind():
         # unions two objects, returns False if items have the same parent and are therefore already in the same group
         for i in (x,y):
             if i not in self.parents:
-                self.add(i)
+                self.addnode(i)
                 
         x,y  = self.get_parent(x), self.get_parent(y)
         if x == y:
